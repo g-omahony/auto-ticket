@@ -18,6 +18,8 @@ def get_request(uri_string:)
   uri = URI(uri_string)
   request = Net::HTTP::Get.new(uri)
 
+  # circle request token request['Circle-Token'] = circle_token
+  # jira auth
   request.basic_auth(jira_username, jira_token)
   req_options = { use_ssl: uri.scheme == 'https' }
   Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
